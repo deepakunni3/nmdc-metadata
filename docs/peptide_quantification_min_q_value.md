@@ -8,13 +8,13 @@ layout: default
 # Type: peptide_quantification_min_q_value
 
 
-TODO: Sam to fill in
+smallest Q-Value associated with the peptide sequence as provided by MSGFPlus tool
 
 URI: [nmdc:peptide_quantification_min_q_value](https://microbiomedata/meta/peptide_quantification_min_q_value)
 
 ## Domain and Range
 
-[PeptideQuantification](PeptideQuantification.md) ->  <sub>OPT</sub> [Integer](types/Integer.md)
+[PeptideQuantification](PeptideQuantification.md) ->  <sub>OPT</sub> [Float](types/Float.md)
 
 ## Parents
 

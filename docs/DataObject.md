@@ -15,7 +15,7 @@ URI: [nmdc:DataObject](https://microbiomedata/meta/DataObject)
 
 ---
 
-![img](http://yuml.me/diagram/nofunky;dir:TB/class/[WorkflowExecutionActivity],[OmicsProcessing],[NamedThing],[Database],[WorkflowExecutionActivity]%3Cwas%20generated%20by%200..1-++[DataObject%7Cfile_size_bytes:bytes%20%3F;md5_checksum:string%20%3F;compression_type:string%20%3F;id(i):string;name(i):string%20%3F;description(i):string%20%3F;alternate_identifiers(i):string%20%2A],[ControlledTermValue]%3Cdata%20object%20type%200..1-++[DataObject],[Database]++-%20data%20object%20set%200..%2A%3E[DataObject],[OmicsProcessing]-%20has%20output%200..%2A%3E[DataObject],[NamedThing]%5E-[DataObject],[ControlledTermValue])
+![img](http://yuml.me/diagram/nofunky;dir:TB/class/[WorkflowExecutionActivity],[TextValue],[OmicsProcessing],[NamedThing],[Database],[TextValue]%3Curl%200..1-++[DataObject%7Cfile_size_bytes:bytes%20%3F;md5_checksum:string%20%3F;compression_type:string%20%3F;id(i):string;name(i):string%20%3F;description(i):string%20%3F;alternate_identifiers(i):string%20%2A],[WorkflowExecutionActivity]%3Cwas%20generated%20by%200..1-++[DataObject],[ControlledTermValue]%3Cdata%20object%20type%200..1-++[DataObject],[Database]++-%20data%20object%20set%200..%2A%3E[DataObject],[OmicsProcessing]-%20has%20output%200..%2A%3E[DataObject],[NamedThing]%5E-[DataObject],[ControlledTermValue])
 
 ---
 
@@ -55,6 +55,9 @@ URI: [nmdc:DataObject](https://microbiomedata/meta/DataObject)
  * [md5 checksum](md5_checksum.md)  <sub>OPT</sub>
     * Description: MD5 checksum of file (pre-compressed)
     * range: [String](types/String.md)
+ * [url](url.md)  <sub>OPT</sub>
+    * range: [TextValue](TextValue.md)
+    * in subsets: (sequencing)
 
 ### Inherited from named thing:
 

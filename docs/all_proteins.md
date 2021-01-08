@@ -2,7 +2,7 @@
 # Type: all_proteins
 
 
-the specific protein identifier
+the list of protein identifiers that are associated with the peptide sequence
 
 URI: [nmdc:all_proteins](https://microbiomedata/meta/all_proteins)
 
@@ -17,6 +17,7 @@ None ->  <sub>0..*</sub> [GeneProduct](GeneProduct.md)
 ## Children
 
  *  [peptide quantification➞all proteins](peptide_quantification_all_proteins.md)
+ *  [protein quantification➞all proteins](protein_quantification_all_proteins.md)
 
 ## Used by
 

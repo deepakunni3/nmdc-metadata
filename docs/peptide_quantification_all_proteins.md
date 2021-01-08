@@ -8,7 +8,7 @@ layout: default
 # Type: peptide_quantification_all_proteins
 
 
-the specific protein identifier
+the list of protein identifiers that are associated with the peptide sequence
 
 URI: [nmdc:peptide_quantification_all_proteins](https://microbiomedata/meta/peptide_quantification_all_proteins)
 

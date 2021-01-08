@@ -50,7 +50,8 @@ Schema for National Microbiome Data Collaborative (NMDC). This schem is organize
           * [Reaction](Reaction.md) - An individual biochemical transformation carried out by a functional unit of an organism, in which a collection of substrates are transformed into a collection of products. Can also represent transporters
     * [Person](Person.md) - represents a person, such as a researcher
     * [Study](Study.md) - A study summarizes the overall goal of a research initiative and outlines the key objective of its underlying projects.  
- * [PeptideQuantification](PeptideQuantification.md) - This is used to link a metabolomics analysis workflow to a specific protein
+ * [PeptideQuantification](PeptideQuantification.md) - This is used to link a metaproteomics analysis workflow to a specific peptide sequence and related information
+ * [ProteinQuantification](ProteinQuantification.md) - This is used to link a metaproteomics analysis workflow to a specific protein
  * [ReactionParticipant](ReactionParticipant.md) - Instances of this link a reaction to a chemical entity participant
 
 ### Mixins
@@ -62,8 +63,9 @@ Schema for National Microbiome Data Collaborative (NMDC). This schem is organize
  * [activity id](activity_id.md)
  * [activity set](activity_set.md) - This property links a database object to the set of prov activities.
  * [add_date](add_date.md) - The date on which the information was added to the database.
- * [all proteins](all_proteins.md) - the specific protein identifier
+ * [all proteins](all_proteins.md) - the list of protein identifiers that are associated with the peptide sequence
     * [peptide quantification➞all proteins](peptide_quantification_all_proteins.md)
+    * [protein quantification➞all proteins](protein_quantification_all_proteins.md) - the grouped list of protein identifiers associated with the peptide sequences that were grouped to a best protein
  * [alternate identifiers](alternate_identifiers.md) - Non-primary identifiers
     * [biosample➞alternate identifiers](biosample_alternate_identifiers.md) - The same biosample may have distinct identifiers in different databases (e.g. GOLD and EMSL)
     * [omics processing➞alternate identifiers](omics_processing_alternate_identifiers.md) - The same omics processing may have distinct identifiers in different databases (e.g. GOLD and EMSL, as well as NCBI)
@@ -686,8 +688,9 @@ Schema for National Microbiome Data Collaborative (NMDC). This schem is organize
     * [window_vert_pos](window_vert_pos.md) - The vertical position of the window on the wall
     * [window_water_mold](window_water_mold.md) - Signs of the presence of mold or mildew on the window.
     * [xylene](xylene.md) - Concentration of xylene in the sample
- * [best protein](best_protein.md) - the specific protein identifier
+ * [best protein](best_protein.md) - the specific protein identifier most correctly associated with the peptide sequence
     * [peptide quantification➞best protein](peptide_quantification_best_protein.md)
+    * [protein quantification➞best protein](protein_quantification_best_protein.md) - the specific protein identifier most correctly grouped to its associated peptide sequences
  * [biogas_retention_time](biogas_retention_time.md)
  * [biogas_temperature](biogas_temperature.md)
  * [biosample set](biosample_set.md) - This property links a database object to the set of samples within it.
@@ -797,7 +800,7 @@ Schema for National Microbiome Data Collaborative (NMDC). This schem is organize
     * [scaf_pct_gt50K](scaf_pct_gt50K.md) - Total sequence size percentage of scaffolds greater than 50 KB.
     * [scaf_powsum](scaf_powsum.md) - Powersum of all scaffolds is the same as logsum except that it uses the sum of (length*(length^P)) for some power P (default P=0.25).
     * [scaffolds](scaffolds.md) - Total sequence count of all scaffolds.
- * [min_q_value](min_q_value.md) - TODO: Sam to fill in
+ * [min_q_value](min_q_value.md) - smallest Q-Value associated with the peptide sequence as provided by MSGFPlus tool
     * [peptide quantification➞min_q_value](peptide_quantification_min_q_value.md)
  * [mod_date](mod_date.md) - The last date on which the database information was modified.
  * [name](name.md) - A human readable label for an entity
@@ -814,10 +817,20 @@ Schema for National Microbiome Data Collaborative (NMDC). This schem is organize
     * [omics processing➞part of](omics_processing_part_of.md)
  * [peptide sequence](peptide_sequence.md)
     * [peptide quantification➞peptide sequence](peptide_quantification_peptide_sequence.md)
+ * [peptide_sequence_count](peptide_sequence_count.md) - count of peptide sequences grouped to the best_protein
+    * [protein quantification➞peptide_sequence_count](protein_quantification_peptide_sequence_count.md)
+ * [peptide_spectral_count](peptide_spectral_count.md) - sum of filter passing MS2 spectra associated with the peptide sequence within a given LC-MS/MS data file
+    * [peptide quantification➞peptide_spectral_count](peptide_quantification_peptide_spectral_count.md)
+ * [peptide_sum_masic_abundance](peptide_sum_masic_abundance.md) - combined MS1 extracted ion chromatograms derived from MS2 spectra associated with the peptide sequence from a given LC-MS/MS data file using the MASIC tool
+    * [peptide quantification➞peptide_sum_masic_abundance](peptide_quantification_peptide_sum_masic_abundance.md)
  * [phase](phase.md) - The phase for a coding sequence entity. For example, phase of a CDS as represented in a GFF3 with a value of 0, 1 or 2.
     * [genome feature➞phase](genome_feature_phase.md)
  * [processing_institution](processing_institution.md)
  * [proport_woa_temperature](proport_woa_temperature.md)
+ * [protein_spectral_count](protein_spectral_count.md) - sum of filter passing MS2 spectra associated with the best protein within a given LC-MS/MS data file
+    * [protein quantification➞protein_spectral_count](protein_quantification_protein_spectral_count.md)
+ * [protein_sum_masic_abundance](protein_sum_masic_abundance.md) - combined MS1 extracted ion chromatograms derived from MS2 spectra associated with the best protein from a given LC-MS/MS data file using the MASIC tool
+    * [protein quantification➞protein_sum_masic_abundance](protein_quantification_protein_sum_masic_abundance.md)
  * [read QC analysis statistic](read_QC_analysis_statistic.md)
     * [input base count](input_base_count.md) - The nucleotide base count number of input reads for QC analysis.
     * [input read count](input_read_count.md) - The sequence count number of input reads for QC analysis.
@@ -836,8 +849,6 @@ Schema for National Microbiome Data Collaborative (NMDC). This schem is organize
  * [smiles](smiles.md) - A string encoding of a molecular graph, no chiral or isotopic information. There are usually a large number of valid SMILES which represent a given structure. For example, CCO, OCC and C(O)C all specify the structure of ethanol.
     * [chemical entity➞smiles](chemical_entity_smiles.md)
  * [soil_annual_season_temp](soil_annual_season_temp.md)
- * [spectral_count](spectral_count.md) - TODO: Sam to fill in
-    * [peptide quantification➞spectral_count](peptide_quantification_spectral_count.md)
  * [started at time](started_at_time.md)
  * [stoichiometry](stoichiometry.md)
     * [reaction participant➞stoichiometry](reaction_participant_stoichiometry.md)
@@ -847,8 +858,6 @@ Schema for National Microbiome Data Collaborative (NMDC). This schem is organize
  * [subject](subject.md)
     * [functional annotation➞subject](functional_annotation_subject.md)
  * [subsurface_depth](subsurface_depth.md)
- * [sum_masic_abundance](sum_masic_abundance.md) - TODO: Sam to fill in
-    * [peptide quantification➞sum_masic_abundance](peptide_quantification_sum_masic_abundance.md)
  * [term](term.md) - pointer to an ontology class
  * [type](type.md) - The type of entity that the json object represents.  This is used to allow for searches for different kinds of objects.
     * [genome feature➞type](genome_feature_type.md) - A type from the sequence ontology
